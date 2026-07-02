@@ -1,0 +1,40 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Using cabal to manage and build Haskell projects.}
+
+Haskell has its own project management and build tool. This tool is called
+cabal and it is a command line utility which is designed to operate on
+files that have a .cabal filename extension.
+
+However, before cabal can be used to manage and build a particular Haskell
+project, it must first initialise that project by running the following
+command from within the project's top-level directory; \\
+
+\begin{minted}[frame=single]{console}
+$ cabal init
+\end{minted}
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Using .cabal files to build a binary executable.}
+
+An example of a simple .cabal file is shown on the next slide.
+
+This file contains just the one target. As you can probably guess
+from the use of the keyword ``executable'', this target can be
+used to build a binary executable. The name of the target is
+basicExample and it is defined on lines 10-18 of the cabal file.
+Incidentally, the name of the target is assigned to the binary
+executable that results from successfully invoking this target.
+
+To build the binary executable in this cabal file, invoke the
+following command from the command line;
+
+\begin{minted}[frame=single]{console}
+$ cabal exe:basicExample
+\end{minted}
+
+\end{frame}

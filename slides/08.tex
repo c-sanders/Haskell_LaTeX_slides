@@ -1,0 +1,26 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell function to rotate a 3d vector using a quaternion.}
+
+\begin{minted}[linenos]{haskell}
+import Linear.V3
+
+
+rotateVectorUsingQuaternion :: V3 Double ->
+                               Double    ->
+                               V3 Double ->
+                               V3 Double
+rotateVectorUsingQuaternion vector angleRotation axisRotation =
+\end{minted}
+
+Note that this function takes the following arguments;
+
+\begin{itemize}
+    \item the 3d vector which is to be rotated (V3 Double)
+    \item the angle by which it is to be rotated (Double)
+    \item the axis which it is to be rotated around (V3 Double)
+\end{itemize}
+
+and returns the rotated value of the 3d vector (V3 Double).
+
+\end{frame}

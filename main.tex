@@ -1,0 +1,61 @@
+\documentclass{beamer}
+
+% \usepackage{listings}
+\usepackage{minted}
+\usepackage{xcolor}
+
+\definecolor{mybg}{HTML}{1E1E1E}
+\definecolor{mytitle}{HTML}{252525}
+\definecolor{lightcream}{HTML}{D7D2CB}
+\definecolor{mygreen}{HTML}{00664F}
+
+% Theme (optional)
+% \usetheme{Madrid}
+
+\usetheme{metropolis}
+\setbeamercolor{background canvas}{bg=mybg}
+\setbeamercolor{normal text}{fg=lightcream}
+\setbeamercolor{frametitle}{fg=lightcream, bg=mytitle}
+
+\usemintedstyle{github-dark}
+
+\setminted{
+  fontsize=\scriptsize,
+  bgcolor=mybg
+}
+
+% \setbeamercolor{background canvas}{bg=dracula-bg}
+% \setbeamercolor{normal text}{fg=dracula-fg}
+% \setbeamercolor{frametitle}{fg=dracula-orange,bg=dracula-bg}
+
+% Title information
+\title{Haskell}
+\author{Craig Sanders}
+\date{\today}
+
+\begin{document}
+
+% Title slide
+
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+
+% New slide.
+
+    \input{slides/01.tex}
+    \input{slides/02.tex}
+    \input{slides/02_b.tex}
+    \input{slides/03.tex}
+    \input{slides/04.tex}
+    \input{slides/05.tex}
+    \input{slides/06.tex}
+    \input{slides/07.tex}
+    \input{slides/08.tex}
+    \input{slides/09.tex}
+    \input{slides/10.tex}
+    \input{slides/11.tex}
+    \input{slides/12.tex}
+
+\end{document}

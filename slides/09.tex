@@ -1,0 +1,25 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell function to partially rotate a 3d vector using a quaternion by way of pre multiplication.}
+
+\begin{minted}[linenos]{haskell}
+import Linear.V3
+import Linear.Quaternion
+
+rotateVectorUsingQuaternion_preMultiply :: V3 Double ->
+                                           Double    ->
+                                           V3 Double ->
+                                           V3 Double
+rotateVectorUsingQuaternion_preMultiply    vector
+                                           angle_rotation
+                                           axis_rotation_non_unit =
+let
+    axis_rotation       = generate_unit_axis (axis_rotation_non_unit)
+    quaternion_vector   = vector_to_quaternion (vector)
+    quaternion_rotation = Quaternion
+                          axis_unit_rotation (angle_rotation)
+in
+    quaternion_rotation * vector
+\end{minted}
+
+\end{frame}

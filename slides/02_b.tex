@@ -1,0 +1,44 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Generalising/templating a function in Haskell.}
+
+If we wanted to change this function so that it is able to operate
+on other numerical types of arguments such as Doubles or Floats, how could
+we go about it? \\
+
+The code snippet below shows us how to do this.
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers :: Num a => a -> a -> a
+addTwoNumbers arg1 arg2 =
+
+    arg1 + arg2
+\end{minted}
+
+In this version of the function, we have used a type class constraint
+to achieve this generality.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Generalising/templating a function in Haskell.}
+
+Under C++, a similar analogy to this function would be;
+
+\begin{minted}[linenos]{c++}
+#include <concepts>
+
+
+template <typename T>
+concept Numeric =
+    std::integral<T> ||
+    std::floating_point<T>;
+
+template <Numeric T>
+T addTwoNumbers(T arg1, T arg2)
+{
+    return arg1 + arg2;
+}
+\end{minted}
+
+\end{frame}

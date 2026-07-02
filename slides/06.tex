@@ -1,0 +1,20 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Impure Haskell function.}
+
+An impure function in Haskell, is one which has effects, such as
+performing IO. \\
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers_printResult :: Int -> Int -> IO ()
+addTwoNumbers_printResult arg1 arg2 = do
+
+    let
+
+        sum = arg1 + arg2
+
+
+    printf "Sum = %d" sum
+\end{minted}
+
+\end{frame}

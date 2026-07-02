@@ -1,0 +1,41 @@
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building an execurable.}
+
+\begin{minted}[linenos]{ini}
+cabal-version: 3.0
+name:          basicExample
+version:       0.1.0.0
+license:       BSD-3-Clause
+license-file:  LICENSE
+author:        Craig Sanders
+maintainer:    craig.sanders.promotions@gmail.com
+build-type:    Simple
+
+executable basicExample
+
+    main-is:          Main.hs
+    hs-source-dirs:   app
+    build-depends:
+        base   >=4.14 && <5,
+        linear >=1.23
+    default-language: Haskell2010
+    ghc-options: -Wall
+\end{minted}
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building an execurable.}
+
+Not only can cabal be used to build binary executables, but it can also
+be used to execute them once they have been built. With respect to our
+basicExample binary executable, we could use cabal to invoke it as follows;
+
+\begin{minted}[frame=single]{console}
+$ cabal run basicExample
+\end{minted}
+
+\end{frame}

@@ -1,0 +1,57 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell libraries, modules, and packages.}
+
+In Haskell, source code can be organised into modules, libraries, and packages. \\
+
+\textbullet{} Modules
+
+Modules are simply individual Haskell source code files; that is, files whose
+filename extension is .hs. \\
+
+\textbullet{} Libraries
+
+Libraries are logical collections of code. \\
+
+\textbullet{} Packages
+
+Packages are the units of distribution. \\
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building a library.}
+
+\begin{minted}[linenos]{ini}
+cabal-version:      3.0
+name:               basicExample
+version:            0.1.0.0
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             Craig Sanders
+maintainer:         craig.sanders.promotions@gmail.com
+build-type:         Simple
+
+library
+
+    hs-source-dirs: src
+    exposed-modules:
+        Utils
+    build-depends:
+        base   >=4.14 && <5,
+        linear >=1.23
+    default-language: Haskell2010
+\end{minted}
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building a library.}
+
+
+
+\end{frame}

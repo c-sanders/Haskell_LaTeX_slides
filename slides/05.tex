@@ -1,0 +1,24 @@
+\begin{frame}[t, fragile]{Pure Haskell function.}
+
+The previous function is more verbose than it needs to be and could be
+simplified to look as follows;
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers :: Int -> Int -> Int
+addTwoNumbers arg1 arg2 =
+
+    arg1 + arg2
+\end{minted}
+
+Since this is a pure function - that is it doesn't perform any operations
+which have effects, we shouldn't use any of the following in it;
+
+\begin{itemize}
+    \item do
+    \item \textless-
+    \item return
+\end{itemize}
+
+The \textless- symbol denotes the bind operation.
+
+\end{frame}

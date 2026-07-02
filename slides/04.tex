@@ -1,0 +1,23 @@
+\begin{frame}[t, fragile]{Pure Haskell function.}
+
+A pure function in Haskell, is one which only performs pure operations.
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers :: Int -> Int -> Int
+addTwoNumbers arg1 arg2 =
+
+    let
+
+        sum = arg1 + arg2
+
+    in
+
+        sum
+\end{minted}
+
+This function will return a value which is equal to its expression.\\
+
+This function's expression is defined after the in keyword, while the
+bindings which it uses are defined after the let keyword.
+
+\end{frame}

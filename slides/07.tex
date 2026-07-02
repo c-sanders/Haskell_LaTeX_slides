@@ -1,0 +1,19 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell function which performs IO and returns a value}
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers_printAndReturnResult :: Int -> Int -> IO Int
+addTwoNumbers_printAndReturnResult arg1 arg2 = do
+
+    let
+
+        sum = arg1 + arg2
+
+
+    printf "Sum = %d" sum
+
+    return sum
+\end{minted}
+
+\end{frame}
