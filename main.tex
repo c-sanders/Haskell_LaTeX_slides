@@ -1,32 +1,11 @@
-\documentclass{beamer}
+\documentclass[9pt]{beamer}
 
-% \usepackage{listings}
-\usepackage{minted}
-\usepackage{xcolor}
+% Provide a default value for the \theme macro, just in case a value for it is
+% not passed in from the command line.
 
-\definecolor{mybg}{HTML}{1E1E1E}
-\definecolor{mytitle}{HTML}{252525}
-\definecolor{lightcream}{HTML}{D7D2CB}
-\definecolor{mygreen}{HTML}{00664F}
+\providecommand{\theme}{light}
 
-% Theme (optional)
-% \usetheme{Madrid}
-
-\usetheme{metropolis}
-\setbeamercolor{background canvas}{bg=mybg}
-\setbeamercolor{normal text}{fg=lightcream}
-\setbeamercolor{frametitle}{fg=lightcream, bg=mytitle}
-
-\usemintedstyle{github-dark}
-
-\setminted{
-  fontsize=\scriptsize,
-  bgcolor=mybg
-}
-
-% \setbeamercolor{background canvas}{bg=dracula-bg}
-% \setbeamercolor{normal text}{fg=dracula-fg}
-% \setbeamercolor{frametitle}{fg=dracula-orange,bg=dracula-bg}
+\input{preamble.tex}
 
 % Title information
 \title{Haskell}
@@ -34,6 +13,12 @@
 \date{\today}
 
 \begin{document}
+
+%
+%     \begin{frame}
+%         Variable : theme = \theme \\
+%         Variable : expandedtheme = \expandedtheme
+%     \end{frame}
 
 % Title slide
 

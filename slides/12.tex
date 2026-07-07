@@ -24,17 +24,41 @@ Packages are the units of distribution. \\
 
 \begin{frame}[t, fragile]{A simple .cabal file for building a library.}
 
+An example of another .cabal file is shown on the next slide. This one can be used to build;
+
+\begin{itemize}
+    \item a library
+    \item a sub-library called Utils
+\end{itemize}
+
+The library can be built by using the target whose definition is labelled library. This should result in an unnamed
+library being built.\\
+
+The sub-library called Utils can be built by using the target whose definition is labelled library Utils. This should
+result in a library named Utils being built.\\
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building a library.}
+
 \begin{minted}[linenos]{ini}
-cabal-version:      3.0
-name:               basicExample
-version:            0.1.0.0
-license:            BSD-3-Clause
-license-file:       LICENSE
-author:             Craig Sanders
-maintainer:         craig.sanders.promotions@gmail.com
-build-type:         Simple
+-- Package description/header omitted for the sake of brevity.
+
 
 library
+
+    hs-source-dirs: src
+    exposed-modules:
+        Utils
+    build-depends:
+        base   >=4.14 && <5,
+        linear >=1.23
+    default-language: Haskell2010
+
+library utils
 
     hs-source-dirs: src
     exposed-modules:
@@ -52,6 +76,85 @@ library
 
 \begin{frame}[t, fragile]{A simple .cabal file for building a library.}
 
+Building either the library or library Utils target from this .cabal file, will result in output which should look
+something like the following;
 
+\begin{minted}[frame=single]{console}
+Resolving dependencies...
+Build profile: -w ghc-9.14.1 -O1
+In order, the following will be built (use -v for more details):
+ - quaternion-0.1.0.0 (lib:Utils) (first run)
+Configuring library 'Utils' for quaternion-0.1.0.0...
+Preprocessing library 'Utils' for quaternion-0.1.0.0...
+Building library 'Utils' for quaternion-0.1.0.0...
+[1 of 1] Compiling Utils ( \
+src/Utils.hs, \
+dist-newstyle/build/x86_64-linux/ghc-9.14.1/quaternion-0.1.0.0/l/Utils/build/Utils/Utils.o, \
+dist-newstyle/build/x86_64-linux/ghc-9.14.1/quaternion-0.1.0.0/l/Utils/build/Utils/Utils.dyn_o
+)
+\end{minted}
+
+A few things are worth noting about this output. First, note that it tells us which Haskell compiler was used to build
+the target -
+
+Note the two entries in this output
+
+The resulting library and sub-library files should be placed into a directory which is similar to the following;
+
+\begin{minted}[frame=single]{console}
+./dist-newstyle/build/x86_64-linux/ghc-9.14.1/mylib-0.1.0.0/build/
+\end{minted}
 
 \end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{A simple .cabal file for building a library.}
+
+1.5 cups red lentils - well rinsed or soaked \\
+1 medium onion \\
+Minced garlic \\
+1 medium wedge pumpkin \\
+5-6 medium sized carrots \\
+3 medium to large potatoes \\
+1 medium red capsicum \\
+2-3 handfuls of fresh green beans \\
+2.5 to 3 tablespoons curry powder \\
+600 mL vegetable stock \\
+400 mL coconut milk \\
+
+\end{frame}
+
+\begin{frame}[t, fragile]{A simple .cabal file for building a library.}
+
+Cut pumpkin, potatoes, and carrots into mid sized chunks. \\
+Brown off onion in Dutch oven with some olive oil. \\
+Towards the end of the process, add the curry powder and the garlic. \\
+Add pumpkin, carrots, and potatoes into Dutch oven
+Add Vegetable stock into the Dutch oven. \\
+Cook for an hour at about 160 degrees Celsius. \\
+Stir vegetables around in Dutch oven. \\
+Cook for another half an hour then stir in the red capsicum. \\
+Cook for another 45 minutes then stir in the green beans and coconut milk. \\
+Cook for another 45 minutes or until done. \\
+
+Serve with steamed rice.
+
+\end{frame}
+
+11111
+22222
+11111
+11111
+11111
+11111
+33333
+44444
+33333
+66666
+abcdefghijkmnopqrstuvwxyz
+acdefghijklnopqrstuvwxy
+abcdefghijklmnpqrstuvwxyz
+The quick rown fox umped over the lazy dog.
+The quick bbbbb

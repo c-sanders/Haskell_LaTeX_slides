@@ -17,3 +17,89 @@ addTwoNumbers_printAndReturnResult arg1 arg2 = do
 \end{minted}
 
 \end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Using parametric polymorphism to define a function}
+
+Consider the function addTwoNumbers from earlier. Recall that it could only receive values of type Int and that it
+would only ever return a value of type Int. But what if instead of just operating on values of type Int, we wanted it to
+operate on values of any numerical type?
+
+In that case, we could redefine our function to something like the following;
+
+\begin{minted}[linenos]{haskell}
+addTwoNumbers :: Num a => a -> a -> a
+addTwoNumbers    arg1 arg2 =
+
+    let
+
+        sum = arg1 + arg2
+
+    in
+
+        sum
+\end{minted}
+
+The key here is the revised declaration for the function, that is;
+
+\begin{minted}[linenos=false]{haskell}
+addTwoNumbers :: Num a => a -> a -> a
+\end{minted}
+
+This new declaration informs us that the function can now receive arguments of any type `a', so long as these types
+derive from the type Num.
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Type variables}
+
+Alternatively, we could have declared the function addTwoNumbers as follows;
+
+\begin{minted}[linenos=false]{haskell}
+addTwoNumbers :: a -> a -> a
+\end{minted}
+
+where `a' denotes a type variable, which stands for any type of variable.
+
+But what if `a' stood for variables of type Char, so that we essentially had;
+
+\begin{minted}[linenos=false]{haskell}
+addTwoNumbers :: Char a => a -> a -> a
+\end{minted}
+
+We could maybe think of a way to make this make sense. But what if we had the following function declaration;
+
+\begin{minted}[linenos=false]{haskell}
+convertToUpperCase :: a -> a
+\end{minted}
+
+We can infer from this function declaration -- or, to borrow from the  Haskell parlance, function type signature, that
+it is meant to take arguments of type Char. So what then would happen if we tried to invoke it as follows?
+
+\begin{minted}[linenos=false]{haskell}
+convertToUpperCase (3.141 :: Float)
+\end{minted}
+
+Nothing good would probably come of it.
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Type variables}
+
+To prevent problems like this from happening in the first place, we could amend the function so that it only takes
+arguments which are of type Char.
+
+\begin{minted}[linenos=false]{haskell}
+convertToUpperCase :: Char a => a -> a -> a
+\end{minted}
+
+
+\end{frame}
