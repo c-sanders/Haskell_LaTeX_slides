@@ -1,0 +1,102 @@
+% \usepackage{extsizes}
+\usepackage{minted}
+\usepackage[svgnames]{xcolor}
+\usepackage{etoolbox}
+
+% Define some custom colors.
+
+\definecolor{Craig_DimGray}{HTML}{606060}
+\definecolor{Craig_DarkGrey}{HTML}{1E1E1E}
+\definecolor{TitleColor}{HTML}{252525}
+
+\definecolor{Craig_Background}{HTML}{1E1E1E}
+\definecolor{mytitle}{HTML}{252525}
+\definecolor{lightcream}{HTML}{D7D2CB}
+\definecolor{mygreen}{HTML}{00664F}
+
+\definecolor{color_code_background}{HTML}{0A0A0A}
+
+\usetheme{metropolis}
+
+% Display some compile time diagnostics about the theme which has been selected.
+
+\typeout{>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}
+\typeout{>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>}
+\typeout{Theme has been set = [\theme]}
+\typeout{Theme = [\meaning\theme]}
+\typeout{Expansion = [\theme]}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+% \ifstrequal{\theme}{macro:->dark}{
+\ifdefstring{\theme}{dark}{
+  \typeout{*** DARK THEME ***}
+}{
+  \typeout{*** LIGHT THEME ***}
+}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+\edef\expandedtheme{\theme}
+\ifstrequal{\expandedtheme}{dark}{
+    \typeout{*** DARK THEME ***}
+}{
+    \typeout{*** LIGHT THEME ***}
+}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+\typeout{<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+
+% Check which theme to use.
+
+\ifdefstring{\theme}{dark}{
+
+    % -----------------------------
+    % Dark theme has been selected.
+    % -----------------------------
+
+    % Title elements
+
+    \colorlet{color_title_background}{TitleColor}
+    \colorlet{color_title_text}{lightcream}
+
+    % Body elements
+
+    \colorlet{color_body_background}{Craig_Background}
+    \colorlet{color_body_text}{lightcream}
+
+    % Source code snippets
+
+    \colorlet{color_code_background}{TitleColor}
+
+    \usemintedstyle{github-dark}
+
+}{
+
+    % ------------------------------
+    % Light theme has been selected.
+    % ------------------------------
+
+    % Title elements
+
+    \colorlet{color_title_background}{Silver}
+    \colorlet{color_title_text}{Black}
+
+    % Body elements
+
+    \colorlet{color_body_background}{White}
+    \colorlet{color_body_text}{Black}
+
+    % Source code snippets
+
+    \colorlet{color_code_background}{White}
+
+    \usemintedstyle{github}
+
+}
+
+\setbeamercolor{background canvas}{bg=color_body_background}
+\setbeamercolor{normal text}{fg=color_body_text}
+\setbeamercolor{frametitle}{fg=color_title_text, bg=color_title_background}
+
+\setminted{
+  fontsize=\scriptsize,
+  bgcolor=color_code_background
+}
