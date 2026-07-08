@@ -1,6 +1,6 @@
 # Haskell_LaTeX_slides
 
-The LaTeX code in this project should be built using a command which is
+It is advisable to compile this project using a command which is
 similar to one of the following.
 
 ```bash
@@ -10,12 +10,12 @@ or
 
 pdflatex --shell-escape "\def\theme{dark}\input{./main.tex}"
 ```
+Strictly speaking, neither of the two arguments which are supplied to
+the pdflatex utility in either of these two examples, are required. If 
+this is the case, then why is their usage advised? The answer to this,
+will be explained in the next two sections.
 
-Both of the arguments to the pdflatex command are required on the
-command line. Why each of them are required, will be explained in the
-next two section.
-
-### Why the --shell-escape option is required
+### Why the --shell-escape option is advised
 
 By default, LaTeX disables execution of external commands for security
 reasons. If it didn't, then a malicious .tex file could potentially
@@ -28,10 +28,18 @@ the use of an external program called pygmentize. The pygmentize program
 analyzes code and produces LaTeX markup with the appropriate colors,
 fonts, and formatting.
 
+Having said all of this however, it appears as though the LaTeX code
+can be compiled without using this argument after all. It is
+still advisable to use this argument though, since not using it might
+only work if the LaTeX environment and its required utilities - such as
+pygmentize in this case, have only been configured in a particular way.
 
-### Why the "\def\theme{light | dark}\input{./main.tex}" option is required
+
+### Why the "\def\theme{light | dark}\input{./main.tex}" option is advised
 
 The LaTeX code which is provided by this project, can utilise either one
-of two different color themes; a light theme or a dark theme. When you
-invoke the pdflatex command from the command line, you must tell it
-which theme you want to use. That is what this argument is for.
+of two different color themes - a light color theme or a dark color
+theme. When you invoke the pdflatex utility from the command line, you
+can tell it which theme you want it to use. That is what this argument
+is for. If you don't specify a color theme using this argument, then the
+LaTeX code will default to using the light color theme.
