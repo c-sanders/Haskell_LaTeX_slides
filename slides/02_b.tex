@@ -1,10 +1,78 @@
 % New slide.
 
+\begin{frame}[t, fragile]{Printing to the display in Haskell.}
+
+There are a number of functions which can be used to print to the display in Haskell. Some of them are listed below;
+
+\begin{minted}[linenos=false]{haskell}
+putStrLn
+print
+printf
+\end{minted}
+
+\mintinline[fontsize=\normalsize]{haskell}{putStrLn} can only handle values which are of data type \mintinline[fontsize=\normalsize]{haskell}{String}. That is, you
+cannot pass it other data types like \mintinline[fontsize=\normalsize]{haskell}{Int}, \mintinline[fontsize=\normalsize]{haskell}{Float}, and
+\mintinline[fontsize=\normalsize]{haskell}{Double}.
+
+It's function type signature is;
+
+\begin{minted}[linenos=false]{haskell}
+putStrLn :: String -> IO ()
+\end{minted}
+
+This means that you can't do these;
+
+\begin{minted}[linenos=false]{haskell}
+putStrLn 42       -- Argument is of type Int
+putStrLn True     -- Argument is of type Bool
+putStrLn [1,2,3]  -- Argument is of type list of Ints
+\end{minted}
+
+but you can do the following;
+
+\begin{minted}[linenos=false]{haskell}
+putStrLn (show 42)
+putStrLn (show True)
+putStrLn (show [1,2,3])
+\end{minted}
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{The \mintinline[fontsize=\normalsize]{haskell}{show} function and the \mintinline[fontsize=\normalsize]{haskell}{Show} type class.}
+
+The \mintinline[fontsize=\normalsize]{haskell}{show} function can only be invoked on an argument, if that argument's type belongs to the \mintinline[fontsize=\normalsize]{haskell}{Show} class type. From this statement and the previous code examples, we can thus infer that the types \mintinline[fontsize=\normalsize]{haskell}{Int}, \mintinline[fontsize=\normalsize]{haskell}{Bool}, and \mintinline[fontsize=\normalsize]{haskell}{[Int]} must all belong to -- or implement the behaviour of class type \mintinline[fontsize=\normalsize]{haskell}{Show}.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{The function \mintinline{haskell}{print}.}
+
+Next, let us consider the function \mintinline{haskell}{print}. Rather than requiring the additional step of calling the \mintinline{haskell}{show} function first, \mintinline{haskell}{print} acts directly on the argument instead. Thus, the previous code examples can be
+rewritten using \mintinline{haskell}{print} as follows; 
+
+\begin{minted}[linenos=false]{haskell}
+print 42
+print True
+print [1,2,3]
+\end{minted}
+
+Just like the \mintinline{haskell}{show} function, \mintinline{haskell}{print} can also handle any data types that implement the \mintinline{haskell}{Show} class type.
+
+Its function type signature is;
+
+\begin{minted}[linenos=false]{haskell}
+print :: Show a => a -> IO ()
+\end{minted}
+
+\end{frame}
+
+
 \begin{frame}[t, fragile]{Generalising/templating a function in Haskell.}
 
 If we wanted to change this function so that it is able to operate
 on other numerical types of arguments such as Doubles or Floats, how could
-we go about it? \\
+we go about it?
 
 The code snippet below shows us how to do this.
 

@@ -1,17 +1,110 @@
+\begin{frame}[t, fragile]{Variables don't exist in Haskell.}
+
+You can't create variables in Haskell.
+
+However you can create what Haskell calls ``bindings''.
+
+Consider the following Haskell code which simply creates a binding named \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and then prints its value to the
+screen.
+
+\begin{minted}[linenos=true]{haskell}
+import Text.Printf (printf)
+
+main :: IO ()
+main = do
+
+    let
+
+        my_var_1 :: Int
+        my_var_1  = 1
+
+    printf "my_var_1 = %d\n" my_var_1
+\end{minted}
+
+When it comes to creating the binding \mintinline[fontsize=\normalsize]{haskell}{my_var_1}, the lines of code which are relevant, are the two lines of code
+which follow the let statement. The first line of code declares a binding called \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and declares it to be of
+the standard Haskell data type Int. The next line of code then initialises \mintinline[fontsize=\normalsize]{haskell}{my_var_1} to a value of 1. 
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Variables don't exist in Haskell.}
+
+Once this is all complete, the binding \mintinline[fontsize=\normalsize]{haskell}{my_var_1} is considered immutable; that is, its value cannot be changed. The Haskell
+compiler will not allow destructive updates to \mintinline[fontsize=\normalsize]{haskell}{my_var_1}.
+
+\textcolor{green}{According to ChatGPT, the first line of code after the let statement in the previous code snippet,
+does not create the value itself. But what does this actually mean? Does this mean that the value \mintinline[fontsize=\normalsize]{haskell}{my_var_1}
+does not get created, or does it mean that its associated value, i.e. 1, does not get created?}
+
+To achieve the same effect of creating a binding under C++, you would need to declare ``my\_var\_1'' as follows;
+
+\begin{minted}[linenos=false]{C++}
+const
+int my_var_1 = 1;
+\end{minted}
+
+This is probably not a perfect analogy, as I'm sure in C++ you can probably get around its ``const-ness'' by way of
+pointers and/or casts if you really wanted to; but it's a general observation nonetheless.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Shadowing of bindings in Haskell.}
+
+Next, consider another snippet of Haskell code;
+
+\begin{minted}[linenos=true]{haskell}
+import Text.Printf (printf)
+
+main :: IO ()
+main = do
+
+    let
+
+        my_var_1 :: Int
+        my_var_1  = 1
+
+    printf "my_var_1 = %d\n" my_var_1
+    my_var_1 <- returnNumber2 ()
+    printf "my_var_1 = %d\n" my_var_1
+\end{minted}
+
+Running this code will display;
+
+\begin{minted}[linenos=false]{console}
+my_var_1 = 1
+my_var_1 = 2
+\end{minted}
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Shadowing of bindings in Haskell.}
+
+Why is this the result, or more to the point, why did the compiler allow the code to compile in the first place? Isn't
+\mintinline[fontsize=\normalsize]{haskell}{my_var_1} meant to be immutable; and if so, then what is going on here?
+
+According to ChatGPT, the compiler is creating another binding which is also called \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and which has a value
+of 2. This version of \mintinline[fontsize=\normalsize]{haskell}{my_var_1} is effectively ``shadowing'' the original version which was created in the let block.
+ChatGPT also says that once the later version of \mintinline[fontsize=\normalsize]{haskell}{my_var_1} is created, we can no longer access the original version of it.
+\end{frame}
+
 \begin{frame}[t, fragile]{``Declaring'' a function in Haskell.}
 
 A Haskell function is essentially ``declared'' in a manner which is
 illustrated by the following example;
 
-\begin{minted}[linenos]{haskell}
+\begin{minted}[linenos=false]{haskell}
 addTwoNumbers :: Int -> Int -> Int
 \end{minted}
 
-However, it is worth noting that Haskell doesn't refer to such a statement
+However, it is worth noting that Haskell doesn't actually refer to such a statement
 as a function declaration. Instead, it refers to it as a type signature,
-or a function type signature. \\
+or a function type signature.
 
-This function type signature tells us that the function takes two Ints
-as arguments, and returns an Int as the result.
+This function type signature tells us that the function takes two values
+of type \mintinline[fontsize=\normalsize]{haskell}{Int}
+as arguments, and returns an \mintinline[fontsize=\normalsize]{haskell}{Int} as the result.
 
 \end{frame}
