@@ -1,0 +1,19 @@
+\begin{frame}[t, fragile]{Types and type classes in Haskell.}
+
+In Haskell, there is a distinction between types -- or data types if you prefer, and type classes. \\
+
+\textbullet{} Types \\
+
+Haskell has a number of built-in or primitive types. These include types
+such as \mintinline[fontsize=\normalsize]{haskell}{Char},
+\mintinline[fontsize=\normalsize]{haskell}{String},
+\mintinline[fontsize=\normalsize]{haskell}{Int}, \mintinline[fontsize=\normalsize]{haskell}{Double},
+\mintinline[fontsize=\normalsize]{haskell}{Float} and the like. \\
+
+\textbullet{} Type classes \\
+
+In Haskell, a type class isn't actually a type. Rather, a type class is essentially a collection of operations which any new type that derives from it can implement. So a type class is not a type which can be used directly, but instead, it acts at the basis for creating new types which \textit{can} be used directly. All of the new types which are instances of a particular type class, will support the same particular set of operations which are defined in the type class.
+
+Put another way, a type class defines a common interface that many different types can implement.
+
+\end{frame}

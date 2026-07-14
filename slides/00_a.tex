@@ -1,0 +1,18 @@
+\begin{frame}[t, fragile]{Types and type classes in Haskell.}
+
+A class type is a type which can be used as the basis for creating a
+number of different types, all of which will have the behaviour which is
+defined in the class type.
+
+All of the types which implement a particular type class, can be thought
+of as forming a ``class of types''.
+
+Types classes are often described as ``interfaces'', but that is only part of the story. If you come from a C++ background,
+they are somewhat similar to Abstract Base Classes (ABCs), except that Haskell type classes don't contain data -- they only specify operations.
+
+ChatGPT states that if you're coming from older C++, it's perfectly reasonable to think that a type class is a bit like
+an ABC without any data, where types don't inherit from it but instead declare they implement its operations.
+
+ChatGPT then goes on to further state that this a good mental model to start with. As you become more familiar with Haskell, you'll find that type classes are more flexible because they don't require an inheritance hierarchy and a type can participate in many unrelated type classes independently.
+
+\end{frame}

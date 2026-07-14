@@ -1,35 +1,5 @@
 \begin{frame}[t, fragile]{Variables don't exist in Haskell.}
 
-You can't create variables in Haskell.
-
-However you can create what Haskell calls ``bindings''.
-
-Consider the following Haskell code which simply creates a binding named \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and then prints its value to the
-screen.
-
-\begin{minted}[linenos=true]{haskell}
-import Text.Printf (printf)
-
-main :: IO ()
-main = do
-
-    let
-
-        my_var_1 :: Int
-        my_var_1  = 1
-
-    printf "my_var_1 = %d\n" my_var_1
-\end{minted}
-
-When it comes to creating the binding \mintinline[fontsize=\normalsize]{haskell}{my_var_1}, the lines of code which are relevant, are the two lines of code
-which follow the let statement. The first line of code declares a binding called \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and declares it to be of
-the standard Haskell data type Int. The next line of code then initialises \mintinline[fontsize=\normalsize]{haskell}{my_var_1} to a value of 1. 
-
-\end{frame}
-
-
-\begin{frame}[t, fragile]{Variables don't exist in Haskell.}
-
 Once this is all complete, the binding \mintinline[fontsize=\normalsize]{haskell}{my_var_1} is considered immutable; that is, its value cannot be changed. The Haskell
 compiler will not allow destructive updates to \mintinline[fontsize=\normalsize]{haskell}{my_var_1}.
 
@@ -37,7 +7,7 @@ compiler will not allow destructive updates to \mintinline[fontsize=\normalsize]
 does not create the value itself. But what does this actually mean? Does this mean that the value \mintinline[fontsize=\normalsize]{haskell}{my_var_1}
 does not get created, or does it mean that its associated value, i.e. 1, does not get created?}
 
-To achieve the same effect of creating a binding under C++, you would need to declare ``my\_var\_1'' as follows;
+To achieve the same effect of creating a binding under C++, you would need to declare \mintinline[fontsize=\normalsize]{haskell}{my_var_1} as follows;
 
 \begin{minted}[linenos=false]{C++}
 const

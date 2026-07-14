@@ -1,0 +1,73 @@
+\begin{frame}[t, fragile]{Type classes in Haskell.}
+
+We could then create an instance of our new type as follows;
+
+\begin{minted}[linenos=true]{haskell}
+data Person = Person String Int
+    deriving Show
+
+main :: IO ()
+main = do
+
+    let alice = Person "Alice" 30
+
+    print alice
+\end{minted}
+
+Compiling and running this program will produce the following output;
+
+\begin{minted}[linenos=true]{console}
+Person "Alice" 30
+\end{minted}
+
+If we don't like the look of this output, then we can rewrite our \mintinline[fontsize=\normalsize]{haskell}{Person}
+type such that it defines its own \mintinline[fontsize=\normalsize]{haskell}{show} function. This will be shown in the
+next section.
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Implementing a custom version of the \mintinline[fontsize=\normalsize]{haskell}{show} function.}
+
+\begin{minted}[linenos=true]{haskell}
+instance Show Person where
+    show (Person name age) =
+        "Person: " ++ name ++ ", age " ++ show age
+\end{minted}
+
+Note in this code snippet, the presence of \mintinline[fontsize=\normalsize]{haskell}{instance Show} rather than
+\mintinline[fontsize=\normalsize]{haskell}{deriving Show} as was used in an earlier code snippet.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Instantiating types in Haskell.}
+
+You can't create variables in Haskell.
+
+However you can create what Haskell calls ``bindings''.
+
+Consider the following Haskell code which simply creates a binding named \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and then prints its value to the
+screen.
+
+\begin{minted}[linenos=true]{haskell}
+import Text.Printf (printf)
+
+main :: IO ()
+main = do
+
+    let
+
+        my_var_1 :: Int
+        my_var_1  = 1
+
+    printf "my_var_1 = %d\n" my_var_1
+\end{minted}
+
+When it comes to creating the binding \mintinline[fontsize=\normalsize]{haskell}{my_var_1}, the lines of code which are relevant, are the two lines of code
+which follow the let statement. The first line of code declares a binding called \mintinline[fontsize=\normalsize]{haskell}{my_var_1} and declares it to be of
+the standard Haskell data type Int. The next line of code then initialises \mintinline[fontsize=\normalsize]{haskell}{my_var_1} to a value of 1.
+
+\end{frame}

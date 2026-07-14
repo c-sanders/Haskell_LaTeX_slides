@@ -1,0 +1,56 @@
+\begin{frame}[t, fragile]{Types classes in Haskell.}
+
+Haskell has a number of different type classes. Some examples of the different type classes which are available are \mintinline[fontsize=\normalsize]{haskell}{Num},
+\mintinline[fontsize=\normalsize]{haskell}{Show},
+\mintinline[fontsize=\normalsize]{haskell}{Read},
+\mintinline[fontsize=\normalsize]{haskell}{Eq}, and
+\mintinline[fontsize=\normalsize]{haskell}{Ord}. \\
+
+\textbullet{} Creating a new type that is an instance of a type class. \\
+
+Imagine that we want to create a new type called \mintinline[fontsize=\normalsize]{haskell}{Person}, and that we define
+it as follows;
+
+\begin{minted}[linenos=false]{haskell}
+data Person = Person String Int
+\end{minted}
+
+This says that an instance of the \mintinline[fontsize=\normalsize]{haskell}{Person} type will contain a
+\mintinline[fontsize=\normalsize]{haskell}{String} called name and an \mintinline[fontsize=\normalsize]{haskell}{Int}
+called age. The trouble is, if we try and use the \mintinline[fontsize=\normalsize]{haskell}{print} function on an
+instance of this type, then the compiler will complain that the type \mintinline[fontsize=\normalsize]{haskell}{Person}
+is not an instance of the type class \mintinline[fontsize=\normalsize]{haskell}{Show}.
+
+To remedy this, our type \mintinline[fontsize=\normalsize]{haskell}{Person} must implement the type class
+\mintinline[fontsize=\normalsize]{haskell}{Show} as follows;
+
+\begin{minted}[linenos=true]{haskell}
+data Person = Person String Int
+    deriving Show
+\end{minted}
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Types classes in Haskell.}
+
+Note line 2 of the previous code snippet; in particular, the use of the keyword \mintinline[fontsize=\normalsize]{haskell}{deriving}.
+This keyword instructs the Haskell compiler to generate an instance of one or more type classes for this type, rather
+than you having to write the instance yourself.
+
+After line 1, \mintinline[fontsize=\normalsize]{haskell}{Person} is just a new type. It is not yet an instance of the
+type class \mintinline[fontsize=\normalsize]{haskell}{Show}. \\
+
+\textbullet{} Deriving (from) multiple type classes. \\
+
+You can derive several type classes at once using code which is similar to the following;
+
+\begin{minted}[linenos=true]{haskell}
+data Person = Person String Int
+    deriving (Show, Eq)
+\end{minted}
+
+This is vaguely like the concept of multiple inheritance.
+\end{frame}

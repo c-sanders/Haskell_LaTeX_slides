@@ -1,0 +1,181 @@
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell functions that print to IO : putStrLn}
+
+Haskell has a number of functions that can print text to IO. Some of these include;
+
+\begin{minted}[linenos=false]{haskell}
+    putStrLn
+    print
+    printf
+\end{minted}
+
+But apart from printing text to IO, what values do these functions return?
+
+putStrLn has the following function type signature;
+
+\begin{minted}[linenos=false]{haskell}
+putStrLn :: String -> IO ()
+\end{minted}
+
+This means that this function takes a single argument of type String, performs an IO action using it -- i.e. prints the
+value of the argument to IO, and then returns a value of type (). Recall from earlier, that () denotes the unit type.
+According to ChatGPT, () carries no information. It is used in this case to indicate that the function has completed
+its action successfully.
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell functions that print to IO : print}
+
+What about the function print? Its function type signature is;
+
+\begin{minted}[linenos=false]{haskell}
+print :: Show a => a -> IO ()
+\end{minted}
+
+But what does Show denote in this function's type signature? In Haskell, Show is what's known as a type class. That is,
+a class (or collection) of types -- which in this case, can be converted into a human-readable string and ``shown'' on
+IO.
+
+Recall that we saw this type of syntax earlier when we declared/defined our parametrically polymorphic version of the
+function addTwoNumbers; where instead of class type Show, it utilised class type Num.
+
+\begin{minted}[linenos=false]{haskell}
+addTwoNumbers :: Num a => a -> a -> a
+\end{minted}
+
+Some examples of types which belong to the Sum type class are;
+
+\begin{minted}[linenos=false]{haskell}
+Char
+String
+Int
+Double
+Float
+\end{minted}
+
+\end{frame}
+
+
+% New slide.
+
+\begin{frame}[t, fragile]{Haskell functions that print to IO : print}
+
+That is, all of the native Haskell types which were just listed, i.e. Char, String, Int, Double, and Float, are all
+instances of Show.
+
+Haskell class types are a bit like C++ abstract base classes (ABCs). Consider the declaration of a very basic C++ ABC
+which is shown below.
+
+\begin{minted}[linenos=true]{haskell}
+class
+Showable
+{
+public :
+    virtual
+    std::string
+    show()
+    const = 0;
+};
+\end{minted}
+
+Since this class is declared as being ``pure virtual'' -- as denoted by the presence of the ``virtual'' and
+``const = 0'' tags, it means that it cannot be instantiated. This means that we cannot create objects of it. Haskell
+type classes are exactly the same; thus we cannot instantiate type class Sum or Num in Haskell.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Haskell functions that print to IO : printf}
+
+Last of all, let us consider the function ``printf''. It has the following function type signature;
+
+\begin{minted}[linenos=false]{haskell}
+printf :: PrintfType r => String -> r
+\end{minted}
+
+printf is an interesting function, as what it returns can vary, depending on what is expected of it. The following
+invocation of the function will return a value of IO ();
+
+\begin{minted}[linenos=false]{haskell}
+printf "The answer is %d\n" 42
+\end{minted}
+
+whilst the following invocation of the function will return a value of String, as that is what the surrounding code
+is expecting;
+
+\begin{minted}[linenos=false]{haskell}
+s :: String
+s = printf "Pi = %.3f" pi
+\end{minted}
+
+Using printf in this way in Haskell appears to yield similar behaviour to that of stringstreams in C++. Consider the
+following snippet of C++ code. To help try and convey this idea, consider the following C++ code snippet;
+
+\begin{minted}[linenos=false]{C++}
+#include <sstream>
+
+std::stringstream ss;
+
+ss << std::fixed << std::setprecision(3) << "Pi = " << std::numbers::pi;
+\end{minted}
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Haskell functions that print to IO : printf}
+
+In the Haskell example, the string is constructed by the printf function and then bound to the value s.
+
+In the C++ example, the string is constructed by the stream insertion operators (<<) and then the result is stored into
+stringstream variable ss.
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Chaining Haskell expressions together and the do keyword.}
+
+Remember earlier, that we stated; \\
+
+\begin{quote}
+Haskell can be thought of as being an expression-oriented language. Every expression has a value, and a function body is
+an expression.
+\end{quote}
+
+Recall that our function ``addTwoNumbers\_printAndReturnResult'' from earlier, made use of the ``do'' keyword. But what
+would this function look like if we didn't use the ``do'' keyword? The answer is shown in the following code snippet;
+
+\begin{minted}[linenos=true]{haskell}
+addTwoNumbers_printAndReturnResult :: Int -> Int -> IO Int
+addTwoNumbers_printAndReturnResult arg1 arg2 =
+
+    let
+
+        sum = arg1 + arg2
+
+    in
+
+        printf "Sum = %d" sum >>= \_ ->
+        return sum
+\end{minted}
+
+\end{frame}
+
+
+\begin{frame}[t, fragile]{Chaining Haskell expressions together and the do keyword.}
+
+The Use \mintinline{cpp}|>>=| operator in the previous code snippet says to take the result of the monadic
+\mintinline{cpp}|printf| function and pass it on to the rest of the block of expressions that form the body of the
+function.
+
+The \mintinline{cpp}|>>=| operator is called the bind operator. According to ChatGPT, it is one of the core operations
+of the Monad type class. Furthermore, its type signature is as follows;
+
+\begin{minted}[linenos=false]{haskell}
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+\end{minted}
+
+\end{frame}
